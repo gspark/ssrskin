@@ -1,0 +1,10 @@
+{
+  "name": "ssrskin",
+  "version": "0.0.1",
+  "description": "Electron application based on React, React Router, Webpack, React Hot Loader for ssr UI",
+  "main": "index.js",
+  "author": "gspark",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
