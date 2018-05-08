@@ -41,7 +41,10 @@ export default {
 
   plugins: [
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production'
+      // NODE_ENV: 'production'
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
     }),
 
     new webpack.NamedModulesPlugin(),

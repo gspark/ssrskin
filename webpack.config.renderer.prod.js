@@ -161,7 +161,10 @@ export default merge.smart(baseConfig, {
      * development checks
      */
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production'
+      // NODE_ENV: 'production'
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
     }),
 
     new UglifyJSPlugin({

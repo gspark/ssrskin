@@ -203,7 +203,10 @@ export default merge.smart(baseConfig, {
      * development checks
      */
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development'
+      // NODE_ENV: 'development'
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development')
+      }
     }),
 
     new webpack.LoaderOptionsPlugin({
