@@ -6,6 +6,9 @@ CALL npm install --save-dev flow-bin flow-runtime flow-typed
 
 CALL npm install --save-dev webpack webpack-cli webpack-dev-server webpack-merge extract-text-webpack-plugin@next
 
+:: prod
+CALL npm install --save-dev webpack-bundle-analyzer
+
 CALL npm install --save-dev concurrently cross-env chalk rimraf detect-port redux-logger style-loader css-loader url-loader file-loader
 
 CALL npm install --save react react-dom react-router-dom react-hot-loader react-redux react-router-redux redux redux-thunk

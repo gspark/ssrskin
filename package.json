@@ -3,10 +3,14 @@
   "version": "0.0.1",
   "description": "Electron application based on React, React Router, Webpack, React Hot Loader for ssr UI",
   "scripts": {
+    "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
+    "build-main": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.main.prod.js --colors",
+    "build-renderer": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.prod.js --colors",
     "dev": "cross-env START_HOT=1 node -r babel-register ./internals/scripts/CheckPortInUse.js && cross-env START_HOT=1 npm run start-renderer-dev",
     "flow": "flow",
     "flow-typed": "rimraf flow-typed/npm && flow-typed install --overwrite || true",
+    "package": "npm run build && build --publish never",
     "postinstall": "node -r babel-register internals/scripts/CheckNativeDep.js && npm run flow-typed && npm run build-dll && electron-builder install-app-deps && node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
     "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production electron ./app/",
@@ -14,6 +18,47 @@
     "start-renderer-dev": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.renderer.dev.js",
     "rebuild": "electron-rebuild -m ./app",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "productName": "ssrskin",
+    "appId": "com.shrill.ssrskin",
+    "files": [
+      "dist/",
+      "node_modules/",
+      "app.html",
+      "main.prod.js",
+      "main.prod.js.map",
+      "package.json"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage"
+      ],
+      "category": "Development"
+    },
+    "directories": {
+      "output": "release"
+    }
   },
   "repository": {
     "type": "git",
@@ -57,6 +102,7 @@
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.8.1",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.1.3",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"
