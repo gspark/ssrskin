@@ -4,9 +4,11 @@ CALL npm install --save-dev babel-core babel-register  babel-plugin-flow-runtime
 
 CALL npm install --save-dev flow-bin flow-runtime flow-typed
 
-CALL npm install --save-dev webpack webpack-cli webpack-dev-server webpack-merge extract-text-webpack-plugin
+CALL npm install --save-dev webpack webpack-cli webpack-dev-server webpack-merge extract-text-webpack-plugin@next
 
 CALL npm install --save-dev concurrently cross-env chalk rimraf detect-port
 
-CALL npm install --save react react-dom
+CALL npm install --save react react-dom react-redux react-router-redux react-hot-loader
+
+CALL npm install --save electron-debug
 
