@@ -196,6 +196,8 @@ export default merge.smart(baseConfig, {
     ]
   },
 
+  mode: 'development',
+
   plugins: [
     new webpack.DllReferencePlugin({
       context: process.cwd(),
@@ -221,12 +223,12 @@ export default merge.smart(baseConfig, {
      * By default, use 'development' as NODE_ENV. This can be overriden with
      * 'staging', for example, by changing the ENV variables in the npm scripts
      */
-    new webpack.EnvironmentPlugin({
-      // NODE_ENV: 'development'
-      'process.env': {
-        'NODE_ENV': JSON.stringify('development')
-      }
-    }),
+    // new webpack.EnvironmentPlugin({
+    //   // NODE_ENV: 'development'
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('development')
+    //   }
+    // }),
 
     new webpack.LoaderOptionsPlugin({
       debug: true

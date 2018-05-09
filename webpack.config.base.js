@@ -39,13 +39,15 @@ export default {
     ],
   },
 
+  mode: 'production',
+
   plugins: [
-    new webpack.EnvironmentPlugin({
-      // NODE_ENV: 'production'
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
+    // new webpack.EnvironmentPlugin({
+    //   // NODE_ENV: 'production'
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('production')
+    //   }
+    // }),
 
     new webpack.NamedModulesPlugin(),
   ],

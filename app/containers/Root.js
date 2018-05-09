@@ -1,22 +1,47 @@
-// @flow
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-import Routes from '../routes';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
 
-type Props = {
-  store: {},
-  history: {}
+const styles = {
+  root: {
+    width: '100%',
+  },
+  flex: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
 };
 
-export default class Root extends Component<Props> {
-  render() {
-    return (
-      <Provider store={this.props.store}>
-        <ConnectedRouter history={this.props.history}>
-          <Routes />
-        </ConnectedRouter>
-      </Provider>
-    );
-  }
+function Root(props) {
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton className={classes.menuButton} color="default" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography type="title" color="inherit" className={classes.flex}>
+            Electron App
+          </Typography>
+          <Button color="default">Login</Button>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
+
+Root.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Root);

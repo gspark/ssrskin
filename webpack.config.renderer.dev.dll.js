@@ -187,6 +187,8 @@ export default merge.smart(baseConfig, {
     libraryTarget: 'var'
   },
 
+  mode: 'development',
+
   plugins: [
     new webpack.DllPlugin({
       path: path.join(dist, '[name].json'),
@@ -202,12 +204,12 @@ export default merge.smart(baseConfig, {
      * NODE_ENV should be production so that modules do not perform certain
      * development checks
      */
-    new webpack.EnvironmentPlugin({
-      // NODE_ENV: 'development'
-      'process.env': {
-        'NODE_ENV': JSON.stringify('development')
-      }
-    }),
+    // new webpack.EnvironmentPlugin({
+    //   // NODE_ENV: 'development'
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('development')
+    //   }
+    // }),
 
     new webpack.LoaderOptionsPlugin({
       debug: true,

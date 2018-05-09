@@ -15,3 +15,4 @@ CALL npm install --save react react-dom react-router-dom react-hot-loader react-
 
 CALL npm install --save electron-debug font-awesome
 
+CALL npm install --save material-ui@next material-ui-icons
