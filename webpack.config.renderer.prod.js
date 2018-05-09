@@ -150,6 +150,8 @@ export default merge.smart(baseConfig, {
     ]
   },
 
+  mode: 'production',
+
   plugins: [
     /**
      * Create global constants which can be configured at compile time.
@@ -160,12 +162,12 @@ export default merge.smart(baseConfig, {
      * NODE_ENV should be production so that modules do not perform certain
      * development checks
      */
-    new webpack.EnvironmentPlugin({
-      // NODE_ENV: 'production'
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
+    // new webpack.EnvironmentPlugin({
+    //   // NODE_ENV: 'production'
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('production')
+    //   }
+    // }),
 
     new UglifyJSPlugin({
       parallel: true,

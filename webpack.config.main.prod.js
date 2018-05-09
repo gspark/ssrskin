@@ -23,6 +23,8 @@ export default merge.smart(baseConfig, {
     filename: './app/main.prod.js'
   },
 
+  mode: 'production',
+
   plugins: [
     new UglifyJSPlugin({
       parallel: true,
@@ -43,13 +45,13 @@ export default merge.smart(baseConfig, {
      * NODE_ENV should be production so that modules do not perform certain
      * development checks
      */
-    new webpack.EnvironmentPlugin({
-      // NODE_ENV: 'production',
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      },
-      DEBUG_PROD: 'false'
-    })
+    // new webpack.EnvironmentPlugin({
+    //   // NODE_ENV: 'production',
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('production')
+    //   },
+    //   DEBUG_PROD: 'false'
+    // })
   ],
 
   /**
