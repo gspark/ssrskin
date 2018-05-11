@@ -9,10 +9,10 @@ CALL npm install --save-dev webpack webpack-cli webpack-dev-server webpack-merge
 :: prod
 CALL npm install --save-dev webpack-bundle-analyzer
 
-CALL npm install --save-dev concurrently cross-env chalk rimraf detect-port redux-logger style-loader css-loader url-loader file-loader
+CALL npm install --save-dev concurrently cross-env chalk rimraf detect-port style-loader css-loader url-loader file-loader tracer
 
 CALL npm install --save react react-dom react-router-dom react-hot-loader react-redux react-router-redux redux redux-thunk
 
-CALL npm install --save electron-debug font-awesome
+CALL npm install --save electron-debug font-awesome sudo-prompt urlsafe-base64 fs-extra
 
 CALL npm install --save material-ui@next material-ui-icons

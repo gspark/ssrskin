@@ -11,12 +11,35 @@
  * @flow
  */
 import { app, BrowserWindow, Menu, Tray } from 'electron';
+import { createWindow, showWindow, getWindow, destroyWindow } from './window'
 import MenuBuilder from './menu';
 import path from 'path';
 
-let mainWindow = null;
+const isSecondInstance = app.makeSingleInstance((argv, workingDirectory) => {
+  // Someone tried to run a second instance, we should focus our window.
+  const _window = getWindow()
+  if (_window) {
+    if (_window.isMinimized()) {
+      _window.restore()
+    }
+    _window.focus()
+  }
+  // 如果是通过链接打开的应用，则添加记录
+  if (argv[1]) {
+    const configs = loadConfigsFromString(argv[1])
+    if (configs.length) {
+      addConfigs(configs)
+    }
+  }
+})
 
-let tray = null;
+if (isSecondInstance) {
+  // cannot find module '../dialog'
+  // https://github.com/electron/electron/issues/8862#issuecomment-294303518
+  app.exit()
+}
+
+
 
 /**
  * Add event listeners...
@@ -31,41 +54,4 @@ app.on('window-all-closed', () => {
 });
 
 
-app.on('ready', async () => {
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: 1024,
-    height: 728
-  });
 
-  let p = path.resolve(__dirname, '..');
-
-  mainWindow.loadURL('file://'+ p + path.sep + 'app.html');
-
-  // @TODO: Use 'ready-to-show' event
-  //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
-  mainWindow.webContents.on('did-finish-load', () => {
-    if (!mainWindow) {
-      throw new Error('"mainWindow" is not defined');
-    }
-    mainWindow.show();
-    mainWindow.focus();
-  });
-
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
-
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
-
-  tray = new Tray(p + path.sep + 'icon.ico');
-  const contextMenu = Menu.buildFromTemplate([
-    {label: 'Item1', type: 'radio'},
-    {label: 'Item2', type: 'radio'},
-    {label: 'Item3', type: 'radio', checked: true},
-    {label: 'Item4', type: 'radio'}
-  ]);
-  tray.setToolTip('This is my application.');
-  tray.setContextMenu(contextMenu);
-});
