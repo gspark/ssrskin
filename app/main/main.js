@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow, Menu, Tray } from 'electron';
+import { app } from 'electron';
 import { createWindow, showWindow, getWindow, destroyWindow } from './window';
 import bootstrap from './bootstrap';
 import { isMac, isWin } from '../shared/env';
