@@ -16,12 +16,12 @@ export const readyPromise = new Promise(resolve => {
   }
 })
 
-// 检查python是否安装
-if (!isPythonInstalled) {
-  dialog.showErrorBox('错误', 'python未安装，请先安装python否则软件将无法使用')
-  // python未安装时自动下载并安装
-  // require('./python').init()
-}
+// // 检查python是否安装
+// if (!isPythonInstalled) {
+//   dialog.showErrorBox('错误', 'python未安装，请先安装python否则软件将无法使用')
+//   // python未安装时自动下载并安装
+//   // require('./python').init()
+// }
 
 /**
  * Set `__static` path to static files in production
